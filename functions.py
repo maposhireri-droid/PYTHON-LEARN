@@ -151,8 +151,17 @@ by maketrans()
 it is called on a string and returns a copy of the 
 original string where the chars have been replaced 
 based on the translation tables'''
-t = str.maketrans('1k', 'br')
+t = str.maketrans('lk', 'br')
 sentence = 'The tent gave in to the leaks'
 
 print(sentence.maketrans(t))
 # output: The tent gave in to the bears
+
+'''you can create default parameters
+function parameters can be given default values, which are used if no argument is provided when the function is called'''
+
+def greet(name='Polly'):
+    return 'Hello ' + name
+
+print(greet()) # Hello Polly
+print(greet('John')) # Hello John
