@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+			"name": "Source Code
+		},
+		{
+			"path": "./tests"
+			"name": "Test Suit"
+		}
+	],
+	"settings": {
+		"window.title": "PYTHON PROJECT - ${activeEditorShort}}
+}
