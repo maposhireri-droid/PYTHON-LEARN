@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - Flask Blog{% endblock %}
+
+{% block content %}
+<article class="post-full">
+    <header class="post-header">
+        <h1>{{ post.title }}</h1>
+        <p class="post-meta">
+            By <strong>{{ post.author }}</strong> on <time>{{ post.date }}</time>
+        </p>
+    </header>
+    
+    <div class="post-content">
+        {{ post.content }}
+    </div>
+    
+    <div class="post-footer">
+        <a href="/" class="btn-back">← Back to Home</a>
+    </div>
+</article>
+{% endblock %}

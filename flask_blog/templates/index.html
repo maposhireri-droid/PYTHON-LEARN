@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask Blog{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Flask Blog</h1>
+    <p>A simple, elegant blogging platform built with Flask</p>
+</div>
+
+<div class="posts-section">
+    <h2>Latest Posts</h2>
+    
+    {% if posts %}
+        <div class="posts-grid">
+            {% for post in posts %}
+                <article class="post-card">
+                    <div class="post-header">
+                        <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+                        <p class="post-meta">By {{ post.author }} on {{ post.date }}</p>
+                    </div>
+                    <p class="post-excerpt">
+                        {{ post.content[:150] }}...
+                    </p>
+                    <a href="/post/{{ post.id }}" class="read-more">Read More →</a>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-posts">No posts yet. <a href="/create">Create the first post!</a></p>
+    {% endif %}
+</div>
+{% endblock %}
