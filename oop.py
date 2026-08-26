@@ -131,7 +131,7 @@ class Circle:
 
 my_circle = Circle(3)
 
-print('initial radius:', my_circle.radius) # Intial radius: 3
+print('initial radius:',my_circle.radius) # Intial radius: 3
 my_circle.radius = 8
 print('After modifying the radius', my_circle.radius) # After modifying the radius: 8
 
