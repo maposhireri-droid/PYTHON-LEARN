@@ -174,3 +174,127 @@ try:
     print(my_circle.radius)
 except AttributeError as e:
     print("Error", e) # Error: 'circle' object has no attribute has no attribute _radius
+
+'''
+With Inheritance a sunclass can use the attributes and methods of a base class.
+'''
+# Inheritance basic syntax  
+ 
+class Parent:
+    pass# Parents attributes and methods
+
+class Child(Parent):
+    pass # Child inherits, extend and/or overrides when necessary. 
+
+''' Single inheritancea child inherits from only one parent.
+'''
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def sound(self):
+        return f"{self.name} makes a sound"
+
+class Dog(Animal):
+    bark = "woof! woof!! woof!!!"
+
+    # Overide Sound to use bark class variable
+    def sound(self):
+        return f"{self.name} barks {self.bark}"
+
+jack = Dog("jack")
+print(jack.sound())
+print(jack.bark)
+
+'''super() function extends the base class method in the subclass.
+'''
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def sound(self):
+        return f"{self.name}makes a sound"
+
+class Dog(Animal):
+    bark = "woof! woof!! woof!!"
+
+    def sound(self):
+        base = super().sound()
+        return f"{base} then {self.name} barks {self.bark}"
+
+jack = Dog('jack')
+print(jack.sound())
+
+'''Multiple inheritance syntax
+'''
+class Parent:
+    pass # Attributs and methods of the parent
+class Child:
+    pass # Attributes and methods of the child
+class GrandChild(Parent, Child):
+    pass 
+    # GrandChild inherits from both parent and child
+    # GrandChild can combine or override behaviours from each
+
+# Multiple inheritance 
+class Walker:
+    def walk(self):
+        return "I can walk on land"
+
+class Swimmer:
+    def swim(self):
+        return "I can swim in water"
+
+# Amphibians inherits from both walker and swimmer
+class Amphibians(Walker, Swimmer):
+    def __init__(self, name):
+        self.name = name
+
+    def Introduce(self):
+        return f"I'm {self.name} the frog {self.walk()} and {self.swim()}"
+
+
+frog = Amphibians('freddy')
+print(frog.Introduce())
+
+''' Polymorphism
+with polymorphism you have an access to an interface where you can interact with many objects of the same kind.
+
+polymorphism allows methods in different classes to share the same name but perform different tasks.
+'''
+
+# Basic Syntax.
+class A: 
+    def action(self):
+        pass
+
+class B:
+    def action(self):
+        pass
+
+class C:
+    def action(self):
+        pass
+
+#class().mehod() # Works for A, B or C
+
+class Cat:
+    def speak(self):
+        return 'A cat meow'
+
+class Bird:
+    def speak(self):
+        return 'A bird tweets'
+
+class Monkey:
+    def speak(self):
+        return 'A monkey ooh ooh aah aah'
+
+def animal_sound(animal):
+    print(animal.speak())
+
+animal_sound(Cat())
+animal_sound(Bird())
+animal_sound(Monkey())
+
+
