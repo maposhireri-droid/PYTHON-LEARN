@@ -84,7 +84,20 @@
         <p>I'm still early in this journey. There's a lot I don't know yet. But I've got a growing GitHub repo, a habit of reading error messages instead of fearing them, and enough small wins stacked up to know I'm headed somewhere.</p>
       </div>
     </article>
-
+<article class="commit" data-hash="c88f0a2">
+      <div class="commit-row">
+        <span class="hash">c88f0a2</span>
+        <span class="branch-tag">tag: week-8</span>
+        <h2 class="msg">ops: ship it to production</h2>
+        <span class="toggle">expand ▾</span>
+      </div>
+      <div class="meta">Author: Keirano &lt;learning@self&gt; · deployment</div>
+      <div class="body">
+        <p>Writing the code turned out to be the easy part. Getting it in front of the internet was its own education. Copy-paste broke between apps on my phone, so I uploaded files one at a time through GitHub's browser editor — which flattened my folder structure and left <code>templates/</code> and <code>static/</code> as loose files instead of real folders. The app deployed fine on Render, then immediately died with <code>jinja2.exceptions.TemplateNotFound</code>.</p>
+        <p>Fixing it meant learning tools I'd never touched: installing Termux to get a real Linux terminal on Android, generating a GitHub personal access token because passwords don't work over HTTPS anymore, and finally running <code>git add</code>, <code>git commit</code>, and <code>git push</code> from an actual command line instead of a web uploader. Even after the folder structure was fixed, the site still 500'd — turned out Render's <strong>Root Directory</strong> setting was blank, so it was building from the repo root instead of the <code>flask-blog</code> subfolder the whole time.</p>
+        <p>None of this was in a tutorial. It was reading logs, matching error messages to causes, and fixing one wrong assumption at a time — which, it turns out, is most of what shipping software actually is.</p>
+      </div>
+    </article>
   </section>
 
   <footer class="footer">
