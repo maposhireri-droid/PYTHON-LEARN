@@ -298,3 +298,95 @@ animal_sound(Bird())
 animal_sound(Monkey())
 
 
+""" Inheritance based polymorphism. 
+A parent class defines a method  and multiple child classes override that method in their own way.
+Calling same method on different child behaves differently depending on which child class it is.
+"""
+
+class Animal:
+    def speak(self):
+        return "Some genericsound"
+
+class Cat(Animal):
+    def speak(self):
+        return "A cat meou"
+
+class Dog(Animal):
+    def speak(self):
+        return "A dog barks woof woof"
+
+class Monkey(Animal):
+    def speak(self):
+        return "A monkey ooh ooh ahh ahh ooh ooh ahh ahh"
+
+print(Cat().speak())
+print(Dog().speak())
+print(Monkey().speak())
+print(Animal().speak())
+
+# Doing the calling in a list. 
+animals = [Cat(), Dog(), Monkey()]
+for animal in animals:
+    print(animal.speak())
+
+""" Name Mangling
+_attribute ment for internal use only. is private and should not be accresses directly outside a class.
+__attribute prevents that attribute from being accessed directly from outside the class.
+"""
+class Example:
+     def __init__(self):
+        self._internal = 'i can access from outside tge class but shouldnot.' 
+        self.__private = "you cannot access me directly from outsidethe class"
+
+obj = Example()
+print(obj._internal)
+#print(obj.__private)
+
+''' __dict__ 
+speciala attribute of an instance is a dictionary containing the objects attributes.
+'''
+class Example:
+    def __init__(self, internal, private):
+        self._internal = internal
+        self.__private = private
+
+example1 = Example(
+    " I can be accessed from outside the class but should not.",
+    "I cannot be accessed directly from outside the class."
+)
+example2 = (
+"I should not be accessed feom outsidethe class,",
+"But ut i can be accessed from outside the class with name mangling."
+)
+
+print(example1.__dict__)
+print(example1._Example__private)
+#print(example2._Example__private)
+
+''' Mangling prevents attributes and methods accidental override when you use Inheritance.
+'''
+
+class Parent:
+    def __init__(self):
+        self.__data = 'Parents data'
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.__data = 'Childs data'
+
+c = Child()
+print(c.__dict__)
+
+# without mangling
+class Parent:
+    def __init__(self):
+        self.data = "parent data"
+
+class Child:
+    def __init__(self):
+        super().__init__()
+        self.data = "child data"
+
+c = Child()
+print(c.__dict__)^
