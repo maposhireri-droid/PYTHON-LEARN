@@ -389,4 +389,104 @@ class Child:
         self.data = "child data"
 
 c = Child()
-print(c.__dict__)^
+print(c.__dict__)
+
+""" Abstraction is
+focusing on what something does rather than how it does it."""
+# Abstract class basic syntax
+
+from abc import ABC, abstractmethod
+
+#Define an abstruct base class
+class AbstractClass(ABC):
+    @abstractmethod 
+    def abstract_method(self):
+        pass
+
+    # concrete subclass that implement the abstract method
+    def ConcreateClassOne(AbstractClass):
+        def abstract_method(self):
+            print("Implementation in concreteclassone")
+
+    # Another concrete subclass
+    def ConcreteClassTwo(AbstractClass):
+        def abstract_method(self):
+            print("Implementation in concreteclasstwo")
+
+# Code Example
+from abc import ABC, abstractmethod
+
+class Animal(ABC): # Inherits from Abstract Base Class.
+    @abstractmethod # Abstract method decorator
+    def make_sound(self): # The method subclasses must override. 
+        pass
+
+# concrete class that will override the abstract method
+class Dog(Animal):
+    def make_sound(self):
+        print("woof!")
+
+# Another concrete class that will override the astract method.
+class Cat(Animal):
+    def make_sound(self):
+        print("meow!")
+
+# Another concrete class that will override the abstruct method.
+class Monkey:
+    def make_sound(self):
+        print("ooh ooh aah aah")
+
+# Create instancesof each concrete class
+animals = [Dog(), Cat(), Monkey()]
+
+# Loop through the instances to call the make sound method
+
+for animal in animals:
+    animal.make_sound()
+
+""" instance attributes you can pass to the instances of the concrete method"""
+
+from abc import ABC, abstractmethod
+
+# The blueprint for any toy that can speak
+class TalkingToy(ABC): # Abstract class.
+    def __init__(self, name):
+        self.name = name
+    @abstractmethod 
+    def speak(self):
+        pass
+
+class RobotToy(TalkingToy): # Subclass that implement the speak method in their own way
+    def speak(self):
+        print(f'{self.name} says beep boop! I am a robot!')
+
+class TeddyBearToy(TalkingToy): # Subclass
+    def speak(self):
+        print(f'{self.name} says hug me! I am cuddly!')
+
+class DinasaurToy(TalkingToy):# Subclass
+    def speak(self):
+        print(f'{self.name} says ROOOAR!')
+
+# Create toys
+rusty = RobotToy("Rusty")
+fluffy = TeddyBearToy("Fluffy")
+rex = DinasaurToy("Rex")
+
+toys = [rusty, fluffy, rex]
+for toy in toys:
+    toy.speak()
+
+""" Type hints are optional signals that tell other developers what data type of a variable or function is expected to be."""
+
+def greet(name: str):
+    return "Hello, " + name
+
+""" A return type hint indicates the expected return type of a function or a method.
+__init__ is None: They dont return a value."""
+
+def example_method(self, value: int) -> bool:
+    pass
+
+# Abstract methods are methods that must be implimented by any class that inherits from the abstract class.
+
