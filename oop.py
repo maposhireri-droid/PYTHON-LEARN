@@ -298,3 +298,195 @@ animal_sound(Bird())
 animal_sound(Monkey())
 
 
+""" Inheritance based polymorphism. 
+A parent class defines a method  and multiple child classes override that method in their own way.
+Calling same method on different child behaves differently depending on which child class it is.
+"""
+
+class Animal:
+    def speak(self):
+        return "Some genericsound"
+
+class Cat(Animal):
+    def speak(self):
+        return "A cat meou"
+
+class Dog(Animal):
+    def speak(self):
+        return "A dog barks woof woof"
+
+class Monkey(Animal):
+    def speak(self):
+        return "A monkey ooh ooh ahh ahh ooh ooh ahh ahh"
+
+print(Cat().speak())
+print(Dog().speak())
+print(Monkey().speak())
+print(Animal().speak())
+
+# Doing the calling in a list. 
+animals = [Cat(), Dog(), Monkey()]
+for animal in animals:
+    print(animal.speak())
+
+""" Name Mangling
+_attribute ment for internal use only. is private and should not be accresses directly outside a class.
+__attribute prevents that attribute from being accessed directly from outside the class.
+"""
+class Example:
+     def __init__(self):
+        self._internal = 'i can access from outside tge class but shouldnot.' 
+        self.__private = "you cannot access me directly from outsidethe class"
+
+obj = Example()
+print(obj._internal)
+#print(obj.__private)
+
+''' __dict__ 
+speciala attribute of an instance is a dictionary containing the objects attributes.
+'''
+class Example:
+    def __init__(self, internal, private):
+        self._internal = internal
+        self.__private = private
+
+example1 = Example(
+    " I can be accessed from outside the class but should not.",
+    "I cannot be accessed directly from outside the class."
+)
+example2 = (
+"I should not be accessed feom outsidethe class,",
+"But ut i can be accessed from outside the class with name mangling."
+)
+
+print(example1.__dict__)
+print(example1._Example__private)
+#print(example2._Example__private)
+
+''' Mangling prevents attributes and methods accidental override when you use Inheritance.
+'''
+
+class Parent:
+    def __init__(self):
+        self.__data = 'Parents data'
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.__data = 'Childs data'
+
+c = Child()
+print(c.__dict__)
+
+# without mangling
+class Parent:
+    def __init__(self):
+        self.data = "parent data"
+
+class Child:
+    def __init__(self):
+        super().__init__()
+        self.data = "child data"
+
+c = Child()
+print(c.__dict__)
+
+""" Abstraction is
+focusing on what something does rather than how it does it."""
+# Abstract class basic syntax
+
+from abc import ABC, abstractmethod
+
+#Define an abstruct base class
+class AbstractClass(ABC):
+    @abstractmethod 
+    def abstract_method(self):
+        pass
+
+    # concrete subclass that implement the abstract method
+    def ConcreateClassOne(AbstractClass):
+        def abstract_method(self):
+            print("Implementation in concreteclassone")
+
+    # Another concrete subclass
+    def ConcreteClassTwo(AbstractClass):
+        def abstract_method(self):
+            print("Implementation in concreteclasstwo")
+
+# Code Example
+from abc import ABC, abstractmethod
+
+class Animal(ABC): # Inherits from Abstract Base Class.
+    @abstractmethod # Abstract method decorator
+    def make_sound(self): # The method subclasses must override. 
+        pass
+
+# concrete class that will override the abstract method
+class Dog(Animal):
+    def make_sound(self):
+        print("woof!")
+
+# Another concrete class that will override the astract method.
+class Cat(Animal):
+    def make_sound(self):
+        print("meow!")
+
+# Another concrete class that will override the abstruct method.
+class Monkey:
+    def make_sound(self):
+        print("ooh ooh aah aah")
+
+# Create instancesof each concrete class
+animals = [Dog(), Cat(), Monkey()]
+
+# Loop through the instances to call the make sound method
+
+for animal in animals:
+    animal.make_sound()
+
+""" instance attributes you can pass to the instances of the concrete method"""
+
+from abc import ABC, abstractmethod
+
+# The blueprint for any toy that can speak
+class TalkingToy(ABC): # Abstract class.
+    def __init__(self, name):
+        self.name = name
+    @abstractmethod 
+    def speak(self):
+        pass
+
+class RobotToy(TalkingToy): # Subclass that implement the speak method in their own way
+    def speak(self):
+        print(f'{self.name} says beep boop! I am a robot!')
+
+class TeddyBearToy(TalkingToy): # Subclass
+    def speak(self):
+        print(f'{self.name} says hug me! I am cuddly!')
+
+class DinasaurToy(TalkingToy):# Subclass
+    def speak(self):
+        print(f'{self.name} says ROOOAR!')
+
+# Create toys
+rusty = RobotToy("Rusty")
+fluffy = TeddyBearToy("Fluffy")
+rex = DinasaurToy("Rex")
+
+toys = [rusty, fluffy, rex]
+for toy in toys:
+    toy.speak()
+
+""" Type hints are optional signals that tell other developers what data type of a variable or function is expected to be."""
+
+def greet(name: str):
+    return "Hello, " + name
+
+""" A return type hint indicates the expected return type of a function or a method.
+__init__ is None: They dont return a value."""
+
+def example_method(self, value: int) -> bool:
+    pass
+
+# Abstract methods are methods that must be implimented by any class that inherits from the abstract class.
+
