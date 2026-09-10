@@ -490,3 +490,4 @@ def example_method(self, value: int) -> bool:
 
 # Abstract methods are methods that must be implimented by any class that inherits from the abstract class.
 
+
