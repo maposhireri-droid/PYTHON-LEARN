@@ -104,6 +104,21 @@
         <p>None of this was in a tutorial. It was reading logs, matching error messages to causes, and fixing one wrong assumption at a time — which, it turns out, is most of what shipping software actually is.</p>
       </div>
     </article>
+<article class="commit" data-hash="7e2c9d4">
+      <div class="commit-row">
+        <span class="hash">7e2c9d4</span>
+        <span class="branch-tag">tag: week-10</span>
+        <h2 class="msg">feat: encapsulation, inheritance, polymorphism, abstraction</h2>
+        <span class="toggle">expand ▾</span>
+      </div>
+      <div class="meta">Author: Keirano &lt;learning@self&gt; · OOP pillars</div>
+      <div class="body">
+        <p>This is where OOP stopped being one idea and became four distinct ones. I started with a <code>Wallet</code> class and made its balance private using a double underscore — <code>self.__balance</code> — which Python enforces by "name mangling" the attribute so it can't be touched directly from outside the class. Trying to print <code>account.__balance</code> throws an <code>AttributeError</code>. To read it safely, you write a <code>get_balance</code> method instead — the object controls access to its own data rather than handing it out freely.</p>
+        <p><code>@property</code> is the cleaner version of that same idea. Instead of calling <code>get_radius()</code> like a method, a getter decorated with <code>@property</code> lets you read <code>my_circle.radius</code> like a plain attribute, while still running code behind the scenes. A matching <code>@radius.setter</code> lets you write to it the same way, but with validation — mine raises a <code>ValueError</code> if someone tries to set a negative radius. The trap I nearly fell into: inside the setter, you can't assign to <code>self.radius</code> again, or it calls itself forever. You assign to the underlying private attribute, <code>self._radius</code>, instead.</p>
+        <p>Inheritance let a <code>Dog</code> class reuse everything from an <code>Animal</code> class while overriding just the parts that differ, and <code>super()</code> let me call the parent's version of a method and build on top of it rather than replacing it outright. Polymorphism was the payoff for that: a <code>Cat</code>, a <code>Dog</code>, and a <code>Monkey</code> can all define their own <code>speak()</code>, and I can loop over a list of them calling <code>animal.speak()</code> without caring which one it is — same method name, different behavior per class.</p>
+        <p>Abstraction tied it together conceptually. Using Python's <code>ABC</code> and <code>@abstractmethod</code>, I can define a class like <code>TalkingToy</code> that <em>cannot</em> be instantiated on its own — it only exists to guarantee that any subclass (<code>RobotToy</code>, <code>TeddyBearToy</code>, <code>DinosaurToy</code>) implements a <code>speak()</code> method in its own way. As my own comment put it: abstraction is about focusing on <em>what</em> something does, not <em>how</em> it does it.</p>
+      </div>
+    </article>
   </section>
 
   <footer class="footer">
