@@ -36,4 +36,27 @@ numbers.append(7) # updating elements
 numbers.insert(3, 15) # Inserting element at specic index(3 is index)
 numbers.pop(2) # Removing element at specific index. if no index, remove first element. 
 
+# Hash Tables
 
+class HashTable:
+    def __init__(self):
+        self.collection = {}
+
+    def hash(self, Str):
+        return sum(ord(char) for char in Str)
+
+    def add(self, k, v):
+        h = self.hash(k)
+        if h not in self.collection:
+            self.collection[h] = {}
+            self.collection[h][k] = v
+
+    def remove(self, k):
+        h = self.hash(k)
+        if h in self.collection and k in self.collection[h]:
+            del self.collection[h][k]
+
+    def lookup(self, k):
+        h = self.hash(k)
+        if h not in self.collection:
+            return Noreturn self.collection[h].get(k)
